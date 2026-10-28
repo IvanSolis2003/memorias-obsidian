@@ -1,10 +1,10 @@
-# Memorias Ivan
+# Memorias Obsidian
 
 PWA para leer, editar y crear notas de un vault de Obsidian guardado en un repositorio privado de GitHub, con una interfaz que imita la app móvil de Obsidian.
 
 Las notas viven solo en GitHub y en la copia local del teléfono. La base de datos guarda únicamente metadatos de usuarios, conexiones y auditoría.
 
-Producción: https://memorias-ivan.vercel.app
+Producción: https://memorias-obsidian.vercel.app
 
 ## Instalación local
 
@@ -78,7 +78,7 @@ Cómo funciona:
 
 - La app es un servidor OAuth 2.1 con PKCE y registro dinámico de clientes (`/.well-known/oauth-authorization-server`, `/api/oauth/register`, `/api/oauth/authorize`, `/api/oauth/token`). El servidor MCP está en `/api/mcp` (Streamable HTTP) y responde 401 con `resource_metadata` sin token.
 - Access token de 1 hora firmado con `MCP_SIGNING_SECRET`; refresh token opaco guardado solo como hash y rotado en cada uso. En cada llamada se comprueba en la base que la conexión no esté revocada.
-- Las escrituras usan el token de instalación de la GitHub App, limitado al repositorio del usuario, y quedan como commits `Memorias Ivan (Claude): crear <ruta>` o `Memorias Ivan (Claude): agregar a <ruta>`. Límite: 30 escrituras por hora por usuario.
+- Las escrituras usan el token de instalación de la GitHub App, limitado al repositorio del usuario, y quedan como commits `Memorias Obsidian (Claude): crear <ruta>` o `Memorias Obsidian (Claude): agregar a <ruta>`. Límite: 30 escrituras por hora por usuario.
 - Revocar: desde el panel (por usuario) o rotando `MCP_SIGNING_SECRET` (corte de emergencia para todos).
 - La búsqueda por contenido usa la API de búsqueda de código de GitHub (límite bajo y solo la rama por defecto); si no está disponible, la herramienta responde solo con coincidencias por título y ruta e informa el motivo.
 

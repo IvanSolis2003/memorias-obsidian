@@ -4,8 +4,8 @@ import { useCallback, useEffect, useSyncExternalStore } from "react";
 
 export type Tema = "oscuro" | "claro";
 
-const CLAVE = "memorias-ivan:tema";
-const EVENTO = "memorias-ivan:cambio-tema";
+const CLAVE = "memorias-obsidian:tema";
+const EVENTO = "memorias-obsidian:cambio-tema";
 
 function suscribir(avisar: () => void) {
   window.addEventListener(EVENTO, avisar);

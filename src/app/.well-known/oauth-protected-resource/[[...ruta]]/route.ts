@@ -8,6 +8,6 @@ export function GET(request: NextRequest) {
     authorization_servers: [origen],
     scopes_supported: ["read", "write"],
     bearer_methods_supported: ["header"],
-    resource_name: "Memorias Ivan",
+    resource_name: "Memorias Obsidian",
   });
 }

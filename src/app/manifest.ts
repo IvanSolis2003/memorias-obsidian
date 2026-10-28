@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Memorias Ivan",
+    name: "Memorias Obsidian",
     short_name: "Memorias",
     description: "Lee, edita y crea las notas de tu vault de Obsidian desde el iPhone.",
     lang: "es",

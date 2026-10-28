@@ -104,7 +104,7 @@ export function PanelClaude({ urlConector, tieneVault, onIrAObsidian }: PanelCla
             <ol className={styles.pasos}>
               <li>En Claude abre Ajustes → Conectores.</li>
               <li>Elige «Agregar conector personalizado».</li>
-              <li>Pega la dirección de arriba y ponle un nombre, por ejemplo Memorias Ivan.</li>
+              <li>Pega la dirección de arriba y ponle un nombre, por ejemplo Memorias Obsidian.</li>
               <li>Inicia sesión con GitHub si te lo pide y elige los permisos: solo lectura, o lectura y escritura.</li>
             </ol>
           }

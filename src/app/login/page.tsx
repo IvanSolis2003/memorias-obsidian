@@ -3,7 +3,7 @@ import { destinoVolverValido } from "@/lib/auth";
 import styles from "./page.module.css";
 
 const MENSAJES_ERROR: Record<string, string> = {
-  no_autorizado: "Tu cuenta de GitHub no está autorizada para usar Memorias Ivan por ahora.",
+  no_autorizado: "Tu cuenta de GitHub no está autorizada para usar Memorias Obsidian por ahora.",
   estado_invalido: "La solicitud de acceso expiró o no es válida. Intenta de nuevo.",
   github: "No se pudo completar el acceso con GitHub. Intenta de nuevo.",
   sesion_expirada: "Tu sesión expiró. Vuelve a entrar.",
@@ -21,7 +21,7 @@ export default async function LoginPage({ searchParams }: PageProps<"/login">) {
   return (
     <main className={styles.pagina}>
       <div className={styles.tarjeta}>
-        <h1 className={styles.titulo}>Memorias Ivan</h1>
+        <h1 className={styles.titulo}>Memorias Obsidian</h1>
         <p className={styles.descripcion}>Tu vault de Obsidian en el iPhone.</p>
         {mensaje && (
           <p className={styles.error} role="alert">

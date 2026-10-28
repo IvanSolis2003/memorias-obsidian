@@ -241,7 +241,7 @@ export function AppShell({ children, claveVault }: AppShellProps) {
           <IconoPanelIzquierdo />
         </button>
         <h1 className={styles.titulo}>
-          {rutaActiva ? tituloDeRuta(rutaActiva) : pathname === "/grafo" ? "Grafo" : pathname === "/cuenta" ? "Cuenta" : "Memorias Ivan"}
+          {rutaActiva ? tituloDeRuta(rutaActiva) : pathname === "/grafo" ? "Grafo" : pathname === "/cuenta" ? "Cuenta" : "Memorias Obsidian"}
         </h1>
         {rutaActiva && claveVault && (
           <div className={styles.acciones}>

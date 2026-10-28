@@ -41,7 +41,7 @@ function rutaDeNota(valor: unknown) {
 
 async function accesoDelUsuario(contexto: ContextoMcp, escritura: boolean) {
   const fila = await obtenerVault(contexto.userId);
-  if (!fila) throw new ErrorApi(409, "Aún no hay un vault conectado en Memorias Ivan.");
+  if (!fila) throw new ErrorApi(409, "Aún no hay un vault conectado en Memorias Obsidian.");
   const vault: VaultConfigurado = {
     owner: fila.repoOwner,
     repo: fila.repoName,
@@ -160,7 +160,7 @@ export async function crearNota(contexto: ContextoMcp, rutaPedida: string, conte
     await guardarArchivo(token, vault.owner, vault.repo, {
       ruta: rutaEnRepositorio(vault, ruta),
       contenido,
-      mensaje: `Memorias Ivan (Claude): crear ${ruta}`,
+      mensaje: `Memorias Obsidian (Claude): crear ${ruta}`,
       branch: vault.branch,
       sha: null,
     });
@@ -197,7 +197,7 @@ export async function agregarANota(contexto: ContextoMcp, rutaPedida: string, te
       await guardarArchivo(token, vault.owner, vault.repo, {
         ruta: rutaEnRepositorio(vault, ruta),
         contenido: nuevo,
-        mensaje: `Memorias Ivan (Claude): agregar a ${ruta}`,
+        mensaje: `Memorias Obsidian (Claude): agregar a ${ruta}`,
         branch: vault.branch,
         sha: actual.sha,
       });

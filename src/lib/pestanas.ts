@@ -63,7 +63,7 @@ export function tituloDeUrl(url: string) {
   if (url === "/grafo") return "Grafo";
   if (url === "/conexiones") return "Conexiones";
   if (url === "/cuenta") return "Cuenta";
-  return "Memorias Ivan";
+  return "Memorias Obsidian";
 }
 
 export function carpetaDeUrl(url: string) {

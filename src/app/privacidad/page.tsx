@@ -3,7 +3,7 @@ import styles from "./page.module.css";
 
 export const dynamic = "force-dynamic";
 
-export const metadata = { title: "Privacidad · Memorias Ivan" };
+export const metadata = { title: "Privacidad · Memorias Obsidian" };
 
 export default function PrivacidadPage() {
   return (
@@ -11,7 +11,7 @@ export default function PrivacidadPage() {
       <article className={styles.documento}>
         <h1>Privacidad</h1>
         <p className={styles.resumen}>
-          Memorias Ivan lee y escribe las notas de tu vault de Obsidian directamente en tu repositorio de GitHub. Tus notas nunca se
+          Memorias Obsidian lee y escribe las notas de tu vault de Obsidian directamente en tu repositorio de GitHub. Tus notas nunca se
           guardan en nuestros servidores.
         </p>
 
@@ -47,7 +47,7 @@ export default function PrivacidadPage() {
         <p>
           Si conectas tu Claude, este podrá buscar y leer notas de tu vault y, si lo autorizas, crear notas nuevas y agregar texto al
           final. No puede borrar, renombrar, mover ni sobrescribir. Lo que Claude lea queda sujeto a las condiciones y a la política de
-          privacidad de Anthropic. Todo lo que escribe queda como un commit en tu repositorio, identificado como «Memorias Ivan
+          privacidad de Anthropic. Todo lo que escribe queda como un commit en tu repositorio, identificado como «Memorias Obsidian
           (Claude)».
         </p>
 

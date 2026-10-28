@@ -1,4 +1,4 @@
-const prefijo = "memorias-ivan:marcadores:";
+const prefijo = "memorias-obsidian:marcadores:";
 const VACIO: string[] = [];
 
 const oyentes = new Set<() => void>();

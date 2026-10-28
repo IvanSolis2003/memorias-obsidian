@@ -1,4 +1,4 @@
-const prefijo = "memorias-ivan:ultima-nota:";
+const prefijo = "memorias-obsidian:ultima-nota:";
 
 export function guardarUltimaNota(clave: string, ruta: string) {
   try {

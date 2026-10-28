@@ -1,4 +1,4 @@
-# Design system — Memorias Ivan
+# Design system — Memorias Obsidian
 
 Imita la app móvil de Obsidian. Los valores son aproximados al tema oscuro por defecto y se afinan con las capturas de `referencias/`.
 

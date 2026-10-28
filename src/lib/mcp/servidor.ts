@@ -16,7 +16,7 @@ async function ejecutar(accion: () => Promise<string>) {
 }
 
 export function crearServidorMcp(contexto: ContextoMcp) {
-  const servidor = new McpServer({ name: "memorias-ivan", version: "1.0.0" });
+  const servidor = new McpServer({ name: "memorias-obsidian", version: "1.0.0" });
 
   servidor.registerTool(
     "buscar_notas",

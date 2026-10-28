@@ -3,9 +3,9 @@ import { RegistroServiceWorker } from "@/components/RegistroServiceWorker";
 import "@/styles/globals.css";
 
 export const metadata: Metadata = {
-  title: "Memorias Ivan",
+  title: "Memorias Obsidian",
   description: "Lee, edita y crea las notas de tu vault de Obsidian desde el iPhone.",
-  applicationName: "Memorias Ivan",
+  applicationName: "Memorias Obsidian",
   appleWebApp: { capable: true, title: "Memorias", statusBarStyle: "black-translucent" },
   icons: { apple: "/apple-touch-icon.png" },
   formatDetection: { telephone: false },

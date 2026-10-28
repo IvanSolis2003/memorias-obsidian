@@ -29,7 +29,7 @@ interface EsquemaMemorias extends DBSchema {
 let conexion: Promise<IDBPDatabase<EsquemaMemorias>> | null = null;
 
 function abrir() {
-  conexion ??= openDB<EsquemaMemorias>("memorias-ivan", 3, {
+  conexion ??= openDB<EsquemaMemorias>("memorias-obsidian", 3, {
     upgrade(db, versionAnterior) {
       if (versionAnterior < 1) {
         db.createObjectStore("meta", { keyPath: "clave" });

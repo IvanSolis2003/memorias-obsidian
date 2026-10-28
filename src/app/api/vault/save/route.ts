@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
     const resultado = await guardarArchivo(sesion.accessToken, vault.owner, vault.repo, {
       ruta: rutaEnRepositorio(vault, ruta),
       contenido,
-      mensaje: `Memorias Ivan: ${shaBase ? "editar" : "crear"} ${ruta}`,
+      mensaje: `Memorias Obsidian: ${shaBase ? "editar" : "crear"} ${ruta}`,
       branch: vault.branch,
       sha: shaBase,
     });
