@@ -1,0 +1,15 @@
+.nota {
+  padding: 16px 0 48px;
+}
+
+.titulo {
+  margin: 0 0 16px;
+  font-size: 2em;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.aviso {
+  padding: 16px 0;
+  color: var(--text-muted);
+}

@@ -1,0 +1,110 @@
+.pagina {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(16px + var(--safe-top)) calc(16px + var(--safe-right)) calc(16px + var(--safe-bottom))
+    calc(16px + var(--safe-left));
+  background: var(--background-primary);
+}
+
+.tarjeta {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 24px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 12px;
+  background: var(--background-secondary);
+}
+
+.titulo {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.descripcion {
+  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.nota {
+  margin: 0;
+  color: var(--text-faint);
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.opciones {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.leyenda {
+  margin-bottom: 8px;
+  padding: 0;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.opcion {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m);
+  background: var(--background-primary);
+  cursor: pointer;
+}
+
+.opcion input {
+  margin-top: 4px;
+  accent-color: var(--interactive-accent);
+}
+
+.opcion span {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.opcion small {
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.boton,
+.secundario {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-m);
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.boton {
+  background: var(--interactive-accent);
+  color: var(--text-on-accent);
+}
+
+.secundario {
+  border-color: var(--background-modifier-border);
+  background: var(--background-secondary-alt);
+  color: var(--text-normal);
+}

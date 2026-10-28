@@ -1,0 +1,233 @@
+.contenido {
+  overflow-wrap: anywhere;
+}
+
+.contenido > :first-child {
+  margin-top: 0;
+}
+
+.contenido h1,
+.contenido h2,
+.contenido h3,
+.contenido h4,
+.contenido h5,
+.contenido h6 {
+  margin: 1.4em 0 0.5em;
+  line-height: 1.25;
+  scroll-margin-top: 8px;
+}
+
+.contenido p,
+.contenido ul,
+.contenido ol,
+.contenido blockquote,
+.contenido pre {
+  margin: 0 0 1em;
+}
+
+.contenido ul,
+.contenido ol {
+  padding-left: 1.6em;
+}
+
+.contenido li {
+  margin: 0.2em 0;
+}
+
+.contenido li > p {
+  margin: 0;
+}
+
+.contenido hr {
+  margin: 1.5em 0;
+  border: 0;
+  border-top: 1px solid var(--background-modifier-border);
+}
+
+.contenido blockquote {
+  padding: 0 0 0 1em;
+  border-left: 3px solid var(--interactive-accent);
+  color: var(--text-muted);
+}
+
+.contenido a {
+  color: var(--text-accent);
+  text-decoration: none;
+}
+
+.contenido a:active {
+  color: var(--text-accent-hover);
+}
+
+.contenido strong {
+  font-weight: 600;
+}
+
+.contenido mark {
+  padding: 0 2px;
+  border-radius: 3px;
+  background: rgba(255, 208, 0, 0.35);
+  color: inherit;
+}
+
+.contenido code {
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  background: var(--code-background);
+  font-size: 0.9em;
+}
+
+.contenido pre {
+  padding: 12px 14px;
+  overflow-x: auto;
+  border-radius: var(--radius-m);
+  background: var(--code-background);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.contenido pre code {
+  padding: 0;
+  background: transparent;
+  font-size: inherit;
+}
+
+.tabla {
+  margin: 0 0 1em;
+  overflow-x: auto;
+}
+
+.tabla table {
+  border-collapse: collapse;
+  min-width: 100%;
+}
+
+.tabla th,
+.tabla td {
+  padding: 6px 10px;
+  border: 1px solid var(--background-modifier-border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.tabla th {
+  background: var(--background-secondary);
+  font-weight: 600;
+}
+
+.contenido :global(.contains-task-list) {
+  padding-left: 0;
+  list-style: none;
+}
+
+.contenido :global(.task-list-item) {
+  list-style: none;
+}
+
+.contenido :global(.task-list-item) input {
+  margin: 0 0.5em 0 0;
+  accent-color: var(--interactive-accent);
+}
+
+.contenido :global(.footnotes) {
+  margin-top: 2em;
+  padding-top: 0.5em;
+  border-top: 1px solid var(--background-modifier-border);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.contenido :global(.footnotes) h2 {
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.contenido :global(.hljs-comment),
+.contenido :global(.hljs-quote) {
+  color: var(--text-faint);
+  font-style: italic;
+}
+
+.contenido :global(.hljs-keyword),
+.contenido :global(.hljs-selector-tag),
+.contenido :global(.hljs-built_in),
+.contenido :global(.hljs-literal) {
+  color: var(--text-accent);
+}
+
+.contenido :global(.hljs-string),
+.contenido :global(.hljs-regexp),
+.contenido :global(.hljs-addition) {
+  color: #7fc994;
+}
+
+.contenido :global(.hljs-number),
+.contenido :global(.hljs-symbol),
+.contenido :global(.hljs-bullet) {
+  color: #e0a45a;
+}
+
+.contenido :global(.hljs-title),
+.contenido :global(.hljs-section),
+.contenido :global(.hljs-function) {
+  color: #6fb3f2;
+}
+
+.contenido :global(.hljs-attr),
+.contenido :global(.hljs-attribute),
+.contenido :global(.hljs-variable),
+.contenido :global(.hljs-template-variable),
+.contenido :global(.hljs-type),
+.contenido :global(.hljs-class) {
+  color: #e58fb0;
+}
+
+.contenido :global(.hljs-deletion) {
+  color: #e5484d;
+}
+
+.interno {
+  color: var(--text-accent);
+}
+
+.inexistente {
+  color: var(--text-faint);
+  cursor: default;
+}
+
+.etiqueta {
+  padding: 0 0.5em;
+  border-radius: 1em;
+  background: color-mix(in srgb, var(--interactive-accent) 22%, transparent);
+  color: var(--text-accent);
+  font-size: 0.9em;
+}
+
+.imagen {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.embed {
+  margin: 0 0 1em;
+  padding: 4px 14px 8px;
+  border-left: 3px solid var(--interactive-accent);
+  border-radius: 0 var(--radius-m) var(--radius-m) 0;
+  background: var(--background-secondary);
+}
+
+.embedTitulo {
+  margin: 4px 0 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.embedCargando {
+  margin: 0 0 1em;
+  color: var(--text-faint);
+  font-size: 0.9rem;
+}

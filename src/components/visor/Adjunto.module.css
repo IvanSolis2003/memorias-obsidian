@@ -1,0 +1,82 @@
+.pdf {
+  display: block;
+  margin: 0.5em 0 1em;
+}
+
+.marco {
+  display: block;
+  width: 100%;
+  height: 460px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m);
+  background: var(--background-secondary);
+}
+
+.abrir {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 0.9rem;
+}
+
+.audio {
+  display: block;
+  margin: 0.5em 0 1em;
+  padding: 10px 12px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m);
+  background: var(--background-secondary);
+}
+
+.reproductor {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+}
+
+.tarjeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0.5em 0 1em;
+  padding: 10px 12px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m);
+  background: var(--background-secondary);
+  color: var(--text-normal);
+  text-decoration: none;
+}
+
+.icono {
+  flex: none;
+  display: flex;
+  color: var(--text-muted);
+}
+
+.datos {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.nombre {
+  overflow: hidden;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.detalle {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.descargar {
+  flex: none;
+  padding: 6px 12px;
+  border-radius: var(--radius-m);
+  background: var(--interactive-accent);
+  color: var(--text-on-accent);
+  font-size: 0.85rem;
+  font-weight: 600;
+}

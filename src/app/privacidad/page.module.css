@@ -1,0 +1,50 @@
+.pagina {
+  min-height: 100dvh;
+  padding: calc(24px + var(--safe-top)) calc(16px + var(--safe-right)) calc(32px + var(--safe-bottom))
+    calc(16px + var(--safe-left));
+  background: var(--background-primary);
+  overflow-y: auto;
+}
+
+.documento {
+  max-width: 640px;
+  margin: 0 auto;
+  color: var(--text-normal);
+  line-height: 1.6;
+}
+
+.documento h1 {
+  margin: 0 0 12px;
+  font-size: 1.6rem;
+}
+
+.documento h2 {
+  margin: 28px 0 8px;
+  font-size: 1.1rem;
+}
+
+.documento p,
+.documento ul {
+  margin: 0 0 12px;
+  color: var(--text-muted);
+}
+
+.documento ul {
+  padding-left: 20px;
+}
+
+.documento li {
+  margin-bottom: 6px;
+}
+
+.documento a {
+  color: var(--text-accent);
+}
+
+.resumen {
+  color: var(--text-normal);
+}
+
+.pie {
+  margin-top: 28px;
+}
