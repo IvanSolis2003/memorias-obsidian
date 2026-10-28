@@ -1,0 +1,47 @@
+{
+  "name": "memorias-ivan",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "postinstall": "prisma generate",
+    "db:validar": "node --env-file-if-exists=.env.local node_modules/prisma/build/index.js validate",
+    "db:migrar": "node --env-file-if-exists=.env.local node_modules/prisma/build/index.js migrate dev",
+    "db:desplegar": "node --env-file-if-exists=.env.local node_modules/prisma/build/index.js migrate deploy",
+    "test:db": "node --env-file=.env.local --test prisma/aislamiento.test.ts"
+  },
+  "dependencies": {
+    "@codemirror/commands": "^6.11.1",
+    "@codemirror/lang-markdown": "^6.5.2",
+    "@codemirror/language": "^6.13.1",
+    "@codemirror/state": "^6.7.6",
+    "@codemirror/view": "^6.43.15",
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "@prisma/adapter-neon": "^7.10.1",
+    "@prisma/client": "^7.10.1",
+    "d3-force": "^3.0.0",
+    "gray-matter": "^4.0.3",
+    "idb": "^8.0.4",
+    "jose": "^6.2.13",
+    "minisearch": "^7.2.0",
+    "next": "16.4.3",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "react-markdown": "^10.1.0",
+    "rehype-highlight": "^7.0.2",
+    "remark-gfm": "^4.0.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.3",
+    "prisma": "^7.10.1",
+    "typescript": "^5"
+  }
+}

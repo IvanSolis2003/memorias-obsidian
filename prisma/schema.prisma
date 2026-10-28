@@ -1,0 +1,85 @@
+generator client {
+  provider            = "prisma-client"
+  output              = "../src/generated/prisma"
+  moduleFormat        = "esm"
+  importFileExtension = "ts"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum OrigenAuditoria {
+  app
+  claude
+}
+
+enum AccionAuditoria {
+  guardar
+  crear
+  adjuntar
+  agregar
+  conectar
+  revocar
+}
+
+model User {
+  id          String       @id @default(cuid())
+  githubId    Int          @unique
+  login       String
+  nombre      String?
+  avatarUrl   String?
+  createdAt   DateTime     @default(now())
+  lastLoginAt DateTime     @default(now())
+  vault       Vault?
+  grants      McpGrant[]
+  auditorias  AuditLog[]
+}
+
+model Vault {
+  id             String   @id @default(cuid())
+  userId         String   @unique
+  installationId Int
+  repoOwner      String
+  repoName       String
+  branch         String
+  basePath       String?
+  updatedAt      DateTime @updatedAt
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model McpClient {
+  id           String     @id
+  nombre       String
+  redirectUris String[]
+  createdAt    DateTime   @default(now())
+  grants       McpGrant[]
+}
+
+model McpGrant {
+  id               String    @id @default(cuid())
+  userId           String
+  clientId         String
+  scopes           String[]
+  refreshTokenHash String    @unique
+  createdAt        DateTime  @default(now())
+  lastUsedAt       DateTime?
+  revokedAt        DateTime?
+  user             User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  client           McpClient @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model AuditLog {
+  id        String          @id @default(cuid())
+  userId    String
+  origen    OrigenAuditoria
+  accion    AccionAuditoria
+  ruta      String?
+  createdAt DateTime        @default(now())
+  user      User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+  @@index([userId, origen, accion, createdAt])
+}

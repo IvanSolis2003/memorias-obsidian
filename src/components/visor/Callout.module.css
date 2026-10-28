@@ -1,0 +1,45 @@
+.callout {
+  margin: 16px 0;
+  padding: 12px 16px;
+  border-radius: var(--radius-m);
+  background: rgba(var(--color-callout), 0.1);
+  mix-blend-mode: normal;
+}
+
+.cabecera {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgb(var(--color-callout));
+  font-weight: 600;
+}
+
+.plegable {
+  cursor: pointer;
+  list-style: none;
+}
+
+.plegable::-webkit-details-marker {
+  display: none;
+}
+
+.icono {
+  flex: none;
+  display: flex;
+}
+
+.titulo {
+  min-width: 0;
+}
+
+.contenido {
+  margin-top: 8px;
+}
+
+.contenido > :first-child {
+  margin-top: 0;
+}
+
+.contenido > :last-child {
+  margin-bottom: 0;
+}
