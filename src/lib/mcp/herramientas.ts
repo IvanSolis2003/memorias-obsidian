@@ -54,7 +54,7 @@ async function accesoDelUsuario(contexto: ContextoMcp, escritura: boolean) {
 
 function exigirEscritura(contexto: ContextoMcp) {
   if (!contexto.scopes.includes("write")) {
-    throw new ErrorApi(403, "Esta conexión es de solo lectura. Autoriza lectura y escritura desde Conexiones para crear o agregar notas.");
+    throw new ErrorApi(403, "Esta conexión es de solo lectura. Autoriza lectura y escritura desde Conexiones para crear, agregar o editar notas.");
   }
 }
 
@@ -62,7 +62,7 @@ async function exigirCupoDeEscritura(contexto: ContextoMcp) {
   const usadas = await contarAuditoria(
     contexto.userId,
     "claude",
-    ["crear", "agregar"],
+    ["crear", "agregar", "guardar"],
     new Date(Date.now() - 60 * 60 * 1000),
   );
   if (usadas >= MAX_ESCRITURAS_POR_HORA) {
@@ -139,7 +139,12 @@ export async function leerNota(contexto: ContextoMcp, rutaPedida: string) {
   ].join("\n");
 }
 
-export async function crearNota(contexto: ContextoMcp, rutaPedida: string, contenido: string) {
+export async function crearNota(
+  contexto: ContextoMcp,
+  rutaPedida: string,
+  contenido: string,
+  crearCarpeta = false,
+) {
   exigirEscritura(contexto);
   const ruta = rutaDeNota(rutaPedida);
   if (Buffer.byteLength(contenido, "utf8") > MAX_BYTES_NOTA) {
@@ -149,11 +154,16 @@ export async function crearNota(contexto: ContextoMcp, rutaPedida: string, conte
   const { vault, token } = await accesoDelUsuario(contexto, true);
 
   const carpeta = carpetaDeRuta(ruta);
-  if (carpeta) {
+  if (carpeta && !crearCarpeta) {
     const arbol = await obtenerArbol(token, vault.owner, vault.repo, vault.branch);
     const prefijo = vault.basePath ? `${vault.basePath}/` : "";
     const existe = arbol.tree.some((nodo) => nodo.type === "tree" && nodo.path === `${prefijo}${carpeta}`);
-    if (!existe) throw new ErrorApi(404, `La carpeta "${carpeta}" no existe en el vault.`);
+    if (!existe) {
+      throw new ErrorApi(
+        404,
+        `La carpeta "${carpeta}" no existe en el vault. Si quieres crearla junto con la nota, vuelve a llamar con crear_carpeta en verdadero.`,
+      );
+    }
   }
 
   try {
@@ -214,4 +224,69 @@ export async function agregarANota(contexto: ContextoMcp, rutaPedida: string, te
     }
   }
   throw new ErrorApi(409, "La nota cambió mientras se agregaba el texto. Intenta de nuevo.");
+}
+
+export async function reemplazarEnNota(
+  contexto: ContextoMcp,
+  rutaPedida: string,
+  buscar: string,
+  reemplazo: string,
+) {
+  exigirEscritura(contexto);
+  const ruta = rutaDeNota(rutaPedida);
+  if (!buscar.trim()) throw new ErrorApi(400, "El texto a buscar está vacío.");
+  await exigirCupoDeEscritura(contexto);
+  const { vault, token } = await accesoDelUsuario(contexto, true);
+  const fin = (texto: string) => texto.replace(/\r\n/g, "\n");
+
+  for (let intento = 0; intento < 2; intento++) {
+    const actual = await obtenerContenido(
+      token,
+      vault.owner,
+      vault.repo,
+      rutaEnRepositorio(vault, ruta),
+      vault.branch,
+    );
+    const conCrlf = actual.contenido.includes("\r\n");
+    const original = fin(actual.contenido);
+    const clave = fin(buscar);
+
+    const coincidencias = original.split(clave).length - 1;
+    if (coincidencias === 0) {
+      throw new ErrorApi(404, "No se encontró ese texto en la nota. Lee la nota y copia el fragmento tal como aparece.");
+    }
+    if (coincidencias > 1) {
+      throw new ErrorApi(
+        409,
+        `Ese texto aparece ${coincidencias} veces en la nota. Incluye más líneas alrededor para que sea único.`,
+      );
+    }
+
+    const posicion = original.indexOf(clave);
+    const editado = original.slice(0, posicion) + fin(reemplazo) + original.slice(posicion + clave.length);
+    const nuevo = conCrlf ? editado.replace(/\n/g, "\r\n") : editado;
+    if (Buffer.byteLength(nuevo, "utf8") > MAX_BYTES_NOTA) {
+      throw new ErrorApi(413, "La nota superaría el tamaño máximo de 1 MB.");
+    }
+    try {
+      await guardarArchivo(token, vault.owner, vault.repo, {
+        ruta: rutaEnRepositorio(vault, ruta),
+        contenido: nuevo,
+        mensaje: `Memorias Obsidian (Claude): editar ${ruta}`,
+        branch: vault.branch,
+        sha: actual.sha,
+      });
+      await registrarAuditoria(contexto.userId, "claude", "guardar", ruta).catch(() => null);
+      return `Texto reemplazado en ${ruta}. Aparecerá en la app al tocar Actualizar.`;
+    } catch (error) {
+      const conflicto = error instanceof ErrorApi && error.datos.codigo === "conflicto";
+      if (!conflicto || intento === 1) {
+        if (conflicto) {
+          throw new ErrorApi(409, "La nota cambió mientras se editaba. Intenta de nuevo.");
+        }
+        throw error;
+      }
+    }
+  }
+  throw new ErrorApi(409, "La nota cambió mientras se editaba. Intenta de nuevo.");
 }

@@ -45,10 +45,11 @@ export default function PrivacidadPage() {
 
         <h2>Conector de Claude</h2>
         <p>
-          Si conectas tu Claude, este podrá buscar y leer notas de tu vault y, si lo autorizas, crear notas nuevas y agregar texto al
-          final. No puede borrar, renombrar, mover ni sobrescribir. Lo que Claude lea queda sujeto a las condiciones y a la política de
+          Si conectas tu Claude, este podrá buscar y leer notas de tu vault y, si lo autorizas, crear notas nuevas (y sus carpetas),
+          agregar texto al final y reemplazar o borrar fragmentos de una nota. No puede borrar notas completas, renombrarlas ni
+          moverlas. Lo que Claude lea queda sujeto a las condiciones y a la política de
           privacidad de Anthropic. Todo lo que escribe queda como un commit en tu repositorio, identificado como «Memorias Obsidian
-          (Claude)».
+          (Claude)», y puedes deshacerlo desde el historial de GitHub.
         </p>
 
         <h2>Cómo revocar el acceso</h2>

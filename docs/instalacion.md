@@ -205,7 +205,7 @@ Precaución: evita editar la misma nota en el celular y en el computador al mism
 
 ## Paso 10. (Opcional) Conectar tu Claude
 
-El conector permite que tu Claude busque, lea, cree notas y agregue texto al final de una nota, solo en tu vault. No puede borrar, renombrar, mover ni sobrescribir.
+El conector permite que tu Claude busque, lea, cree notas (con su carpeta si hace falta), agregue texto al final y reemplace o borre fragmentos de una nota, solo en tu vault. No puede borrar notas completas, renombrarlas ni moverlas. Cada cambio queda como un commit que puedes deshacer en GitHub.
 
 1. En tu GitHub App → **Credentials → Key pairs → Generate a private key**. Se descarga un archivo `.pem`. No lo subas a ningún repositorio ni lo pegues en chats.
 2. En Vercel agrega tres variables más (entorno **Production**):

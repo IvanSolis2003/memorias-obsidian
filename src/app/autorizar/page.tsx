@@ -86,7 +86,7 @@ export default async function AutorizarPage({ searchParams }: PageProps<"/autori
             <input type="radio" name="permiso" value="write" defaultChecked={solicitud.permisos.includes("write")} />
             <span>
               <strong>Lectura y escritura</strong>
-              <small>Además, crear notas nuevas y agregar texto al final de una nota. Nunca borra ni sobrescribe.</small>
+              <small>Además, crear notas nuevas (y sus carpetas), agregar texto al final y reemplazar o borrar fragmentos de una nota. No borra notas completas, ni las renombra o mueve. Cada cambio queda como un commit que puedes deshacer en GitHub.</small>
             </span>
           </label>
         </fieldset>

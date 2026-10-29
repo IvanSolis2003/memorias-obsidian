@@ -73,7 +73,7 @@ Desde Conexiones, "Administrar instalación" abre la configuración en GitHub. S
 
 ## Conector de Claude (MCP)
 
-Cada usuario conecta su propio Claude desde Conexiones → pestaña Claude y desde sus chats puede buscar, leer, crear notas y agregar texto al final, solo en su vault. No hay herramientas para borrar, renombrar, mover ni sobrescribir. Los pasos de configuración están en la [guía de instalación](docs/instalacion.md#paso-10-opcional-conectar-tu-claude).
+Cada usuario conecta su propio Claude desde Conexiones → pestaña Claude y desde sus chats puede buscar, leer, crear notas (con su carpeta si hace falta), agregar texto al final y reemplazar o borrar fragmentos de una nota, solo en su vault. No hay herramientas para borrar notas completas, renombrarlas ni moverlas; cada cambio queda como un commit que se puede deshacer en GitHub. Los pasos de configuración están en la [guía de instalación](docs/instalacion.md#paso-10-opcional-conectar-tu-claude).
 
 Cómo funciona:
 

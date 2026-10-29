@@ -111,7 +111,7 @@ export function PanelClaude({ urlConector, tieneVault, onIrAObsidian }: PanelCla
         />
         <FilaAjuste
           titulo="Importante"
-          descripcion="Los conectores personalizados dependen de tu plan de Claude y pueden requerir permisos de administrador en tu organización. Claude podrá buscar, leer, crear notas y agregar texto al final; nunca borra ni sobrescribe."
+          descripcion="Los conectores personalizados dependen de tu plan de Claude y pueden requerir permisos de administrador en tu organización. Claude podrá buscar, leer, crear notas (y carpetas), agregar texto al final y reemplazar o borrar fragmentos; no borra notas completas ni las mueve. Cada cambio queda como un commit que puedes deshacer en GitHub."
         />
       </SeccionAjustes>
 
