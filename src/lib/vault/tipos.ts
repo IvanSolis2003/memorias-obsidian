@@ -58,6 +58,7 @@ export type MetaVault = {
   archivos: ArchivoVault[];
   truncado: boolean;
   ultimaActualizacion: string;
+  versionAnalisis?: number;
 };
 
 export type VaultGuardado = {

@@ -8,7 +8,11 @@ export type NotaAnalizada = {
   titulos: TituloNota[];
 };
 
-const REGEX_WIKILINK = /(!?)\[\[([^[\]\n]+?)\]\]/g;
+export const VERSION_ANALISIS = 1;
+
+const CLAVES_ETIQUETAS = ["tags", "tag", "etiquetas", "etiqueta"];
+
+const REGEX_WIKILINK =/(!?)\[\[([^[\]\n]+?)\]\]/g;
 const REGEX_ENLACE_MD = /(!?)\[[^\]\n]*\]\(([^)\s]+)\)/g;
 const REGEX_TAG = /(?<=^|\s)#((?=[\p{L}\p{N}_/-]*[\p{L}_/-])[\p{L}\p{N}_/-]+)/gmu;
 const REGEX_TITULO = /^(#{1,6})\s+(.+?)\s*#*\s*$/;
@@ -52,12 +56,10 @@ export function separarFrontmatter(texto: string) {
 }
 
 function etiquetasDeFrontmatter(propiedades: Record<string, unknown>) {
-  const crudo = propiedades.tags ?? propiedades.tag;
-  const lista = Array.isArray(crudo)
-    ? crudo
-    : typeof crudo === "string"
-      ? crudo.split(/[\s,]+/)
-      : [];
+  const lista = CLAVES_ETIQUETAS.flatMap((clave) => {
+    const crudo = propiedades[clave];
+    return Array.isArray(crudo) ? crudo : typeof crudo === "string" ? crudo.split(/[\s,]+/) : [];
+  });
   return lista
     .filter((tag): tag is string => typeof tag === "string")
     .map((tag) => tag.trim().replace(/^#/, ""))

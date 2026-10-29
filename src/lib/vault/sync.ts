@@ -1,6 +1,13 @@
 import { mapConLimite } from "../concurrencia";
-import { analizarNota } from "./parse";
-import { eliminarNotas, guardarMeta, guardarNotas, leerMeta, listarNotas } from "./store";
+import { analizarNota, VERSION_ANALISIS } from "./parse";
+import {
+  eliminarNotas,
+  guardarMeta,
+  guardarNotas,
+  leerMeta,
+  listarContenidos,
+  listarNotas,
+} from "./store";
 import type { ArchivoVault, NotaGuardada } from "./tipos";
 
 const NOTAS_POR_LOTE = 20;
@@ -82,10 +89,25 @@ async function pedirLote(rutas: string[]): Promise<RespuestaLote> {
   return respuesta.json();
 }
 
+export async function reanalizarSiHaceFalta(clave: string) {
+  const meta = await leerMeta(clave);
+  if (!meta || meta.versionAnalisis === VERSION_ANALISIS) return false;
+  const [notas, contenidos] = await Promise.all([listarNotas(clave), listarContenidos(clave)]);
+  const textos = new Map(contenidos.map((item) => [item.ruta, item.contenido]));
+  const items = notas.flatMap((nota) => {
+    const contenido = textos.get(nota.ruta);
+    return contenido === undefined ? [] : [{ nota: { ...nota, ...analizarNota(contenido) }, contenido }];
+  });
+  await guardarNotas(items);
+  await guardarMeta({ ...meta, versionAnalisis: VERSION_ANALISIS });
+  return true;
+}
+
 export async function sincronizar(
   clave: string,
   alProgreso: (progreso: Progreso) => void,
 ): Promise<ResultadoSync> {
+  await reanalizarSiHaceFalta(clave);
   const meta = await leerMeta(clave);
   const respuestaArbol = await pedir(
     "/api/vault/tree",
@@ -155,6 +177,7 @@ export async function sincronizar(
       archivos: arbol.archivos,
       truncado: arbol.truncado,
       ultimaActualizacion: new Date().toISOString(),
+      versionAnalisis: VERSION_ANALISIS,
     });
   }
 
