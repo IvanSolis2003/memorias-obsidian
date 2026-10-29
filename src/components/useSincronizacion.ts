@@ -6,6 +6,7 @@ import { invalidarCache } from "@/lib/vault/resolutor";
 import { leerMeta, purgarOtros } from "@/lib/vault/store";
 import {
   ErrorSync,
+  reanalizarSiHaceFalta,
   sincronizar,
   type Progreso,
   type ResultadoSync,
@@ -45,7 +46,14 @@ export function useSincronizacion(clave: string | null) {
     if (!clave) return;
     let activo = true;
     purgarOtros(clave)
-      .then(() => leerInfoLocal(clave))
+      .then(() => reanalizarSiHaceFalta(clave).catch(() => false))
+      .then((reanalizado) => {
+        if (activo && reanalizado) {
+          invalidarCache();
+          setVersion((actual) => actual + 1);
+        }
+        return leerInfoLocal(clave);
+      })
       .then((local) => {
         if (!activo) return;
         setInfo(local);
