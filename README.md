@@ -32,7 +32,7 @@ Next.js (App Router) y TypeScript, PostgreSQL en Neon con Prisma (solo metadatos
 3. `npm run db:desplegar` para aplicar las migraciones.
 4. `npm run dev` y abrir http://localhost:3000.
 
-Requiere Node.js 22 o superior. Comandos útiles: `npm run lint`, `npm run build`, `npm run db:validar`, `npm run db:migrar` y `npm run test:db`.
+Requiere Node.js 22 o superior (22.18 o superior para `npm test`). Comandos útiles: `npm run lint`, `npm run build`, `npm test`, `npm run db:validar`, `npm run db:migrar`, `npm run test:db` y `npm run test:mcp`.
 
 ## Variables de entorno
 
@@ -108,6 +108,8 @@ Las carpetas ocultas (`.obsidian`, `.obsidian-mcp`, `.git`) nunca se leen, se mu
 - Protección CSRF: toda petición que modifica datos en `/api/*` debe venir del mismo origen (`Origin` o `Sec-Fetch-Site`). `/api/mcp` y los endpoints OAuth públicos usan token o PKCE.
 - Límite de intentos por IP en `login`, `callback`, `authorize`, `register` y `token` (respuesta 429). Es en memoria de cada instancia de Vercel: un freno básico; para un límite estricto conviene sumar una regla de Rate Limiting en el Firewall de Vercel.
 - `/cuenta` permite **Eliminar mi cuenta**: borra en cascada usuario, vault, conexiones de Claude y actividad, y vacía la copia local. No toca el repositorio ni desinstala la GitHub App. `/privacidad` explica qué se guarda y cómo revocar el acceso.
+- `npm test`: pruebas unitarias de los módulos que interpretan el vault (notas, etiquetas, enlaces, rutas, adjuntos, grafo, pestañas, límite de intentos). No usan red ni base de datos y corren en cada PR con GitHub Actions junto con lint y build (`.github/workflows/ci.yml`).
+- `npm run test:mcp`: batería del conector de Claude (90 comprobaciones: OAuth con PKCE, permisos, aislamiento entre usuarios, creación de carpetas, edición y límite de escrituras) contra un GitHub simulado y la base real. Requiere `.env.local` y `npm run build` previo; crea usuarios temporales y los borra al terminar.
 - `npm run test:db` comprueba el aislamiento entre usuarios contra la base real.
 
 ## Despliegue en Vercel
