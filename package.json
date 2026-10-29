@@ -12,7 +12,8 @@
     "db:migrar": "node --env-file-if-exists=.env.local node_modules/prisma/build/index.js migrate dev",
     "db:desplegar": "node --env-file-if-exists=.env.local node_modules/prisma/build/index.js migrate deploy",
     "test": "node --import ./scripts/pruebas/registrar.mjs --test \"src/**/*.test.ts\"",
-    "test:db": "node --env-file=.env.local --test prisma/aislamiento.test.ts"
+    "test:db": "node --env-file=.env.local --test prisma/aislamiento.test.ts",
+    "test:mcp": "node --env-file=.env.local scripts/pruebas/mcp/correr.mjs"
   },
   "dependencies": {
     "@codemirror/commands": "^6.11.1",
