@@ -12,7 +12,7 @@ describe("etiquetas del frontmatter", () => {
   });
 
   it("lee etiquetas escritas en español", () => {
-    assert.deepEqual(analizarNota("---\netiquetas: [kyocera, bugfix]\n---\ncuerpo").tags, ["kyocera", "bugfix"]);
+    assert.deepEqual(analizarNota("---\netiquetas: [ejemplo, bugfix]\n---\ncuerpo").tags, ["ejemplo", "bugfix"]);
   });
 
   it("lee la clave etiqueta en singular", () => {
